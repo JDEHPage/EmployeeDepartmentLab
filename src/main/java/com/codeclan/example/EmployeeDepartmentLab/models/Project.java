@@ -38,7 +38,7 @@ public class Project {
     )
     private List<Employee>employees;
 
-    public Project(String name, int duration) {
+    public Project(String name, int duration, Employee employee) {
         this.name = name;
         this.duration = duration;
         this.employees = new ArrayList<Employee>();

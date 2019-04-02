@@ -17,12 +17,12 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-//    @JsonIgnoreProperties("department")
-//    @OneToMany(mappedBy = "department")
-//    private List<Employee> employees;
+    @JsonIgnoreProperties("department")
+    @OneToMany(mappedBy = "department")
+    private List<Employee> employees;
     public Department(String name){
         this.name = name;
-//        this.employees = new ArrayList<Employee>();
+        this.employees = new ArrayList<Employee>();
     }
 
     public Department(){
@@ -45,11 +45,11 @@ public class Department {
         this.name = name;
     }
 
-//    public List<Employee> getEmployees() {
-//        return employees;
-//    }
-//
-//    public void setEmployees(List<Employee> employees) {
-//        this.employees = employees;
-//    }
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 }

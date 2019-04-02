@@ -2,6 +2,8 @@ package com.codeclan.example.EmployeeDepartmentLab.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
@@ -15,6 +17,24 @@ public class Employee {
     private String last_name;
     private String employee_number;
 
+    @ManyToMany
+    @JoinTable(
+            name="employee_projects",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "employee_id",
+                            nullable = false,
+                            updatable = false)
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(
+                            name = "project_id",
+                            nullable = false,
+                            updatable = false)
+            }
+    )
+    private List<Project> projects;
+
     @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
@@ -24,6 +44,11 @@ public class Employee {
         this.last_name = last_name;
         this.employee_number = employee_number;
         this.department = department;
+        this.projects = new ArrayList<Project>();
+    }
+
+    public void addProject(Project project){
+        projects.add(project);
     }
 
     public Long getId() {
@@ -64,5 +89,13 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }
